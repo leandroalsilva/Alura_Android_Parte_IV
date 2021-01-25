@@ -3,8 +3,15 @@ package com.example.aluraviagens.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
 
 import com.example.aluraviagens.R;
+import com.example.aluraviagens.dao.PacoteDAO;
+import com.example.aluraviagens.model.Pacote;
+import com.example.aluraviagens.ui.adapter.ListaPacotesAdapter;
+
+import java.util.List;
 
 public class ListaPacotesActivity extends AppCompatActivity {
 
@@ -12,5 +19,8 @@ public class ListaPacotesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_pacotes);
+        ListView listadePacotes = findViewById(R.id.lista_pacotes_listview);
+        List<Pacote> pacotes = new PacoteDAO().lista();
+        listadePacotes.setAdapter(new ListaPacotesAdapter(pacotes, this));
     }
 }
